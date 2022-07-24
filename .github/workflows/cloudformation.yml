@@ -27,4 +27,4 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
         with:
           name:  resume-infra
-          template: cloud-resume-challenge/infra-template.yml
+          template: infra-template.yml
