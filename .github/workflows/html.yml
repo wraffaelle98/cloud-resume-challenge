@@ -1,26 +1,16 @@
+name: Upload to S3
+
+on: [pull_request]
+
 jobs:
-  CypressTestReport:
-    timeout-minutes: 120
+  upload:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: cypress-Test-report
-        uses: cypress-io/github-action@v2
+      - uses: actions/checkout@master
+      - uses: swimlane/s3-upload-file-action@master
         with:
-          command: npm run testing
-          browser: chrome
-          headless: true
-      - name: Upload Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: HTML_Report
-          path: cypress/reports/Result
-      - name: Upload S3    
-        uses: shallwefootball/s3-upload-action@master
-        id: S3
-        with:
-          aws_key_id: ${{secrets.AWS_KEY_ID}}
-          aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: resume-challenge-william
-          source_dir: index.py
+          file_path: 'index.html'
+          dest_dir: '/'
