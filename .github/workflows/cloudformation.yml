@@ -41,17 +41,17 @@ jobs:
         uses: aws-actions/aws-cloudformation-github-deploy@v1.0.3
         with:
           # The name of the CloudFormation stack
-          name: 
+          name: resume-infra
           # The path or URL to the CloudFormation template
-          template: 
+          template: infra-template.yml
           # The comma-delimited list of stack template capabilities to acknowledge. Defaults to 'CAPABILITY_IAM'
-          capabilities: # optional, default is CAPABILITY_IAM
+          capabilities: CAPABILITY_IAM
           # The parameters to override in the stack inputs. The list is comma-delimited, with each entry formatted as <ParameterName>=<ParameterValue>.
           parameter-overrides: # optional
           # If the CloudFormation change set is empty, do not fail. Defaults to '0' (will fail on empty change set)
-          no-fail-on-empty-changeset: # optional, default is 0
+          no-fail-on-empty-changeset: 0
           # Disable rollback of the stack if stack creation fails. Defaults to '0' (will rollback if stack creation fails). This input is only used for stack creation, not for stack update
-          disable-rollback: # optional, default is 0
+          disable-rollback: 0
           # The amount of time that can pass before the stack status becomes CREATE_FAILED. This input is only used for stack creation, not for stack update
           timeout-in-minutes: # optional
           # The comma-delimited list of Amazon SNS topic ARNs to publish stack related events
