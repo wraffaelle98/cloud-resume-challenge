@@ -1,10 +1,9 @@
 name: Deploy CloudFormation Stacks
 # Controls when the action will run.
-on: 
+on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    paths:
+      - 'infra-template.yml'
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   cfn-deployment:
